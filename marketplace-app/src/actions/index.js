@@ -1,11 +1,16 @@
 export {
-  FETCH_PRODUCT_START,
-  FETCH_PRODUCT_SUCCESS,
-  FETCH_PRODUCT_FAIL,
+  FETCH_PRODUCTS_START,
+  FETCH_PRODUCTS_SUCCESS,
+  FETCH_PRODUCTS_FAIL,
   POST_PRODUCT_SUCCESS,
   POST_PRODUCT_FAIL,
   getProducts,
   postProduct,
 } from "./productActions";
 
-export { POST_LOGIN_SUCCESS, POST_LOGIN_FAIL, postLogin } from "./loginActions";
+export {
+  FETCH_USER_START,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAIL,
+  getUserInfo,
+} from "./userActions";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialState = {
@@ -9,8 +9,6 @@ const initialState = {
 };
 
 const Login = () => {
-  // make a post request to retrieve a token from the api
-  // when you have handled the token, navigate to the BubblePage route
   const [login, setLogin] = useState(initialState);
   const { push } = useHistory();
 
@@ -22,10 +20,11 @@ const Login = () => {
     e.preventDefault();
     setLogin({ ...login, isFetching: true });
     axiosWithAuth()
-      .post("/api/login", login)
+      .post("/api/auth/login", login)
       .then((res) => {
-        localStorage.setItem("token", JSON.stringify(res.data.payload));
-        push("/marketing-page");
+        console.log("THIS", res);
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        push("/profile:id");
       })
       .catch((err) => {
         console.log(err, "sorry, an error has occured while logging you in");
@@ -58,6 +57,9 @@ const Login = () => {
         <button>Log in</button>
         {login.isFetching && "Please wait...logging you in"}
       </form>
+      <Link to="/signup">
+        <button>If you haven't registered yet, sign up here.</button>
+      </Link>
     </>
   );
 };
