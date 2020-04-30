@@ -39,7 +39,7 @@ const SignUp = () => {
   return (
     <>
       <h1>Register your Account</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="signup" onSubmit={handleSubmit}>
         Name:
         <input
           type="text"
