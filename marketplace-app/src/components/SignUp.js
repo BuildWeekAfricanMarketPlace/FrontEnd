@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 const initialValue = {
   name: "",
+  lastname: "",
   username: "",
   password: "",
 };
@@ -30,7 +31,7 @@ const SignUp = () => {
       })
       .catch((err) => {
         console.log(
-          formValues,
+          err,
           "sorry, an error has occured while registering you in"
         );
       });
