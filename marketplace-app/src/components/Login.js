@@ -10,6 +10,7 @@ const initialState = {
 
 const Login = () => {
   const [login, setLogin] = useState(initialState);
+  const [userId, setUserId] = useState();
   const { push } = useHistory();
 
   const handleChange = (e) => {
@@ -22,14 +23,17 @@ const Login = () => {
     axiosWithAuth()
       .post("/api/auth/login", login)
       .then((res) => {
-        console.log("THIS", res);
+        console.log("You just logged in", res);
         localStorage.setItem("token", JSON.stringify(res.data.token));
-        push("/profile:id");
+        localStorage.setItem("userId", JSON.stringify(res.data.id));
+        setUserId(res.data.id);
+        push("/user-profile", userId);
       })
       .catch((err) => {
         console.log(err, "sorry, an error has occured while logging you in");
       });
   };
+
   return (
     <>
       <h1>Welcome to African Marketplace</h1>
