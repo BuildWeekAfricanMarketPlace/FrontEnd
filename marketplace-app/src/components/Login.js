@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import styled from "styled-components";
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: rgb(250, 179, 51);
+`;
+const Spam = styled.span`
+  color: rgb(29, 155, 76);
+`;
 
 const initialState = {
   username: "",
@@ -36,7 +46,9 @@ const Login = () => {
 
   return (
     <>
-      <h1>Welcome to African Marketplace</h1>
+      <Title>
+        Welcome to African <Spam>Marketplace</Spam>
+      </Title>
       <form onSubmit={handleSubmit}>
         Username:
         <input
