@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./components/Profile";
-
+import ProductsPage from "./components/ProductsPage"
 import "./App.css";
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
             <Switch>
               <Route path="/signup" component={SignUp} />
               <Route exact path="/" component={Login} />
-              <PrivateRoute exact path="/products-page" />
+              <PrivateRoute exact path="/products-page" component={ProductsPage}/>
               <PrivateRoute path="/user-profile" component={Profile} />
             </Switch>
           </nav>
