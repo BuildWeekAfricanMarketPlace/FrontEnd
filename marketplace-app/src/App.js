@@ -26,7 +26,7 @@ function App() {
                 </Link>
               </li>
               <li>
-                <Link className="protected" to="/profile:id">
+                <Link className="protected" to="/user-profile">
                   Account
                 </Link>
               </li>
@@ -34,8 +34,8 @@ function App() {
             <Switch>
               <Route path="/signup" component={SignUp} />
               <Route exact path="/" component={Login} />
-              <PrivateRoute path="/products-page" />
-              <PrivateRoute path="/user-profile:id" component={Profile} />
+              <PrivateRoute exact path="/products-page" />
+              <PrivateRoute path="/user-profile" component={Profile} />
             </Switch>
           </nav>
         </header>
@@ -46,6 +46,7 @@ function App() {
 
 export default App;
 
-// woo joo noo
-// donald trump
-// jotaro-name jojo-user jaja-pass
+// woo joo noo x
+// donald trump x
+// jojo jaja
+// ricardo / john

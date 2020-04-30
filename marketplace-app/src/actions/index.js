@@ -12,5 +12,8 @@ export {
   FETCH_USER_START,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAIL,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAIL,
   getUserInfo,
+  deleteUser,
 } from "./userActions";

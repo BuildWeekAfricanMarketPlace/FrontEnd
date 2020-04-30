@@ -1,23 +1,24 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { getUserInfo } from "../actions";
+import { Link, useHistory } from "react-router-dom";
+import { getUserInfo, deleteUser } from "../actions";
 
 const Profile = () => {
-  const name = useSelector((state) => state.name);
-  const username = useSelector((state) => state.username);
-
+  const id = localStorage.getItem("userId");
+  const { push } = useHistory();
+  const user = useSelector((state) => state.userReducer.singleUser);
   const dispatch = useDispatch();
+  console.log("this is useselector", user);
 
   useEffect(() => {
-    dispatch(getUserInfo());
+    dispatch(getUserInfo(id));
   }, []);
 
   return (
     <div className="profile">
       <h2>Account Details</h2>
-      <p>Name: {name}</p>
-      <p>Username: {username}</p>
+      <p>Name: {user.name}</p>
+      <p>Username: {user.username}</p>
       <p>
         Password:
         <Link to="/change-password">
@@ -26,7 +27,17 @@ const Profile = () => {
       </p>
       <h4>
         Delete Account:
-        <button>Delete this Account</button>
+        <button
+          className="delete"
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(deleteUser(user));
+            localStorage.clear();
+            push("/");
+          }}
+        >
+          Delete this Account
+        </button>
       </h4>
     </div>
   );
