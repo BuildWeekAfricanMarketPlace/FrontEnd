@@ -20,8 +20,8 @@ const Details = styled.p`
   color: rgb(42, 42, 42);
   font-weight: bold;
 `;
+
 const Clicker = styled.button`
-  //   text-align: center;
   border: 2px solid rgb(15, 15, 15);
   background-color: rgb(250, 179, 51);
   color: rgb(15, 15, 15);

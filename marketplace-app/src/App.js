@@ -44,6 +44,16 @@ const List = styled.li`
   list-style: none;
 `;
 
+const ALink = styled.a`
+  font-size: 1.2em;
+  color: rgb(248, 248, 248);
+  text-decoration: none;
+  font-weight: bold;
+  &:hover {
+    color: rgb(250, 179, 51);
+  }
+`;
+
 const BaseLink = styled(Link)`
   font-size: 1.2em;
   color: rgb(248, 248, 248);
@@ -68,9 +78,9 @@ function App() {
                 African <Spam>MarketPlace</Spam>
               </Title>
               <List>
-                <StyledLink className="login" to="/">
+                <ALink href="https://distracted-bhaskara-52b4fe.netlify.app/">
                   Home
-                </StyledLink>
+                </ALink>
               </List>
               <List>
                 <StyledLink className="login" to="/">
@@ -92,11 +102,7 @@ function App() {
           <Switch>
             <Route path="/signup" component={SignUp} />
             <Route exact path="/" component={Login} />
-            <PrivateRoute
-              exact
-              path="/products-page"
-              component={ProductsPage}
-            />
+            <PrivateRoute path="/products-page" component={ProductsPage} />
             <PrivateRoute path="/user-profile" component={Profile} />
           </Switch>
         </header>
@@ -111,4 +117,5 @@ export default App;
 // donald trump x
 // jojo jaja
 // mal / joe
+// daycare / day
 //<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
