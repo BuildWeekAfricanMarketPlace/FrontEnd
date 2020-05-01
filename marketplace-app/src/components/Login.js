@@ -3,13 +3,59 @@ import { useHistory, Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import styled from "styled-components";
 
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: rgb(250, 179, 51);
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
-const Spam = styled.span`
+
+const Title = styled.h1`
+  font-size: 1.7em;
+  text-align: center;
   color: rgb(29, 155, 76);
+`;
+const Form = styled.form`
+  text-align: center;
+`;
+const Text = styled.span`
+  color: rgb(42, 42, 42);
+  font-weight: bold;
+`;
+const Input = styled.input`
+  text-align: center;
+  margin: 0 0 20px 0;
+`;
+const SignUp = styled.button`
+  text-align: center;
+  border: 2px solid rgb(15, 15, 15);
+  background-color: rgb(250, 179, 51);
+  color: rgb(15, 15, 15);
+  font-size: 1em;
+  margin-left: 50px;
+  font-weight: bold;
+  &:hover {
+    background-color: rgb(29, 155, 76);
+    color: rgb(250, 179, 51);
+    border-radius: 10px;
+    transition: all ease-in-out 0.3s;
+  }
+`;
+const ToLogin = styled.button`
+  text-align: center;
+  border: 2px solid rgb(15, 15, 15);
+  background-color: rgb(250, 179, 51);
+  color: rgb(15, 15, 15);
+  font-size: 1em;
+  margin-left: 10%;
+  font-weight: bold;
+  padding-left: 20px;
+  padding-right: 20px;
+  &:hover {
+    background-color: rgb(29, 155, 76);
+    color: rgb(250, 179, 51);
+    border-radius: 10px;
+    transition: all ease-in-out 0.3s;
+  }
 `;
 
 const initialState = {
@@ -45,38 +91,36 @@ const Login = () => {
   };
 
   return (
-    <>
-      <Title>
-        Welcome to African <Spam>Marketplace</Spam>
-      </Title>
-      <form onSubmit={handleSubmit}>
-        Username:
-        <input
+    <Wrapper>
+      <Title>Customer Login</Title>
+      <Form onSubmit={handleSubmit}>
+        <Text>Username: </Text>
+        <Input
           type="text"
           name="username"
           label="username"
           value={login.username}
           onChange={handleChange}
-          placeholder="username"
+          placeholder="Username *"
         />
         <br />
-        Password:
-        <input
+        <Text>Password: </Text>
+        <Input
           type="password"
           name="password"
           label="password"
           value={login.password}
           onChange={handleChange}
-          placeholder="password"
+          placeholder="Password *"
         />
         <br />
-        <button>Log in</button>
+        <ToLogin>Log in</ToLogin>
         {login.isFetching && "Please wait...logging you in"}
-      </form>
-      <Link to="/signup">
-        <button>If you haven't registered yet, sign up here.</button>
-      </Link>
-    </>
+        <Link to="/signup">
+          <SignUp>If you haven't registered yet, sign up here.</SignUp>
+        </Link>
+      </Form>
+    </Wrapper>
   );
 };
 

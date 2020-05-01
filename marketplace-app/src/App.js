@@ -16,7 +16,7 @@ import styledProperty from "styled-property";
 // styled-components
 
 const Wrapper = styled.div`
-  background: rgb(150, 150, 150);
+  background: rgb(246, 247, 249);
   font-family: "Open Sans", sans-serif;
   height: 100vh;
   min-height: 100vh;
@@ -46,7 +46,7 @@ const List = styled.li`
 
 const BaseLink = styled(Link)`
   font-size: 1.2em;
-  color: rgb(120, 120, 120);
+  color: rgb(248, 248, 248);
   text-decoration: none;
   font-weight: bold;
   &:hover {
@@ -67,6 +67,11 @@ function App() {
               <Title>
                 African <Spam>MarketPlace</Spam>
               </Title>
+              <List>
+                <StyledLink className="login" to="/">
+                  Home
+                </StyledLink>
+              </List>
               <List>
                 <StyledLink className="login" to="/">
                   Login
@@ -106,3 +111,4 @@ export default App;
 // donald trump x
 // jojo jaja
 // mal / joe
+//<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
