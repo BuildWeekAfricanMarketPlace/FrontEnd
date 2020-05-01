@@ -31,3 +31,15 @@ export const postProduct = (newProduct) => (dispatch) => {
       dispatch({ type: POST_PRODUCT_FAIL, payload: err.response });
     });
 };
+
+export const updateProduct = (newProduct) => (dispatch) => {
+  axiosWithAuth()
+    .post("/api/products", newProduct)
+    .then((res) => {
+      console.log("FOR THE POST:", res);
+      dispatch({ type: POST_PRODUCT_SUCCESS, payload: res.data });
+    })
+    .catch((err) => {
+      dispatch({ type: POST_PRODUCT_FAIL, payload: err.response });
+    });
+};
