@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getUserInfo, deleteUser } from "../actions";
+import UpdateUserDetails from "./UpdateUserDetails";
 import styled from "styled-components";
 
 const Title = styled.h1`
@@ -41,12 +42,13 @@ const Profile = () => {
   const { push } = useHistory();
   const user = useSelector((state) => state.userReducer.singleUser);
   const dispatch = useDispatch();
-  console.log("this is useselector", user);
+  //   console.log("this is useselector", user);
 
   useEffect(() => {
     dispatch(getUserInfo(id));
   }, []);
 
+  console.log({ user });
   return (
     <Wrapper className="profile">
       <Title>Account Details</Title>
@@ -54,7 +56,7 @@ const Profile = () => {
       <Details>Username: {user.username}</Details>
       <Details>
         Password:
-        <Link to="/change-password">
+        <Link to="/update-user">
           <Clicker>Change Password</Clicker>
         </Link>
       </Details>
@@ -72,6 +74,9 @@ const Profile = () => {
           Delete this Account
         </Clicker>
       </Details>
+      <>
+        <UpdateUserDetails user={user} />
+      </>
     </Wrapper>
   );
 };

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Profile from "./components/Profile";
+import UpdateUserDetails from "./components/UpdateUserDetails";
 import ProductsPage from "./components/ProductsPage";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -18,8 +19,8 @@ import styledProperty from "styled-property";
 const Wrapper = styled.div`
   background: rgb(246, 247, 249);
   font-family: "Open Sans", sans-serif;
-  height: 100vh;
-  min-height: 100vh;
+  height: 290vh;
+  min-height: 290vh;
 `;
 
 const TopNav = styled.nav`
@@ -104,6 +105,7 @@ function App() {
             <Route exact path="/" component={Login} />
             <PrivateRoute path="/products-page" component={ProductsPage} />
             <PrivateRoute path="/user-profile" component={Profile} />
+            <PrivateRoute path="/update-user" component={UpdateUserDetails} />
           </Switch>
         </header>
       </Wrapper>

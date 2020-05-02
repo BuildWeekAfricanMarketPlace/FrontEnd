@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   // flex-direction: column;
   // flex-wrap: wrap;
 `;
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -32,9 +33,9 @@ const EditSection = styled.div`
 `;
 
 const initialState = {
-  name: "",
+  category: "",
   location: "",
-  seller: "",
+  name: "",
   price: "",
 };
 
@@ -47,11 +48,12 @@ export default function ProductsPage() {
   const { push } = useHistory();
   const { id } = useParams();
 
+  console.log("itemtoedit", itemToEdit);
+  console.log("itemToEdit ID", itemToEdit.id);
+
   useEffect(() => {
     axiosWithAuth()
-      .get(
-        "https://bw-african-marketplace-lucas.herokuapp.com/api/market/items"
-      )
+      .get("/api/market/items")
       .then((res) => {
         console.log(res);
         setItemsForSale(res.data);
@@ -86,22 +88,26 @@ export default function ProductsPage() {
 
   const saveEdit = (e) => {
     e.preventDefault();
+    console.log("hit Here", itemToEdit);
     axiosWithAuth()
       .put(`/api/market/items/${itemToEdit.id}`, itemToEdit)
       .then((res) => {
         console.log("this is the put", res);
-        console.log(itemToEdit.id);
-        // setItemsForSale(res.data);
-        setItemsForSale([
-          ...itemsForSale.map((x) => {
-            if (x.id == res.data.id) {
-              x = res.data;
-              return x;
-            } else {
-              return x;
-            }
-          }),
-        ]);
+        // const item = itemsForSale.filter((product) => {
+        //   return product.id === id;
+        // });
+        // setItemsForSale(item[id]);
+        setItemsForSale(res.data);
+        // setItemsForSale([
+        //   ...itemsForSale.map((x) => {
+        //     if (x.id == res.data.id) {
+        //       x = res.data;
+        //       return x;
+        //     } else {
+        //       return x;
+        //     }
+        //   }),
+        // ]);
       })
       .catch((error) => console.log("This is not working", error));
   };
@@ -115,8 +121,9 @@ export default function ProductsPage() {
         return (
           <Card key={item.id}>
             <p>Name: {item.name}</p>
+            <p>Category: {item.category}</p>
             <p>Location: {item.location}</p>
-            <p>Seller: {item.owner}</p>
+            {/* <p>Seller: {item.owner}</p> */}
             <p>{item.price}</p>
             <button
               onClick={() => {
@@ -140,7 +147,7 @@ export default function ProductsPage() {
         <form onSubmit={saveEdit}>
           <legend>Edit Product</legend>
           <label>
-            name:
+            Name:
             <input
               onChange={(e) =>
                 setItemToEdit({ ...itemToEdit, name: e.target.value })
@@ -149,7 +156,16 @@ export default function ProductsPage() {
             />
           </label>
           <label>
-            location:
+            Category:
+            <input
+              onChange={(e) =>
+                setItemToEdit({ ...itemToEdit, category: e.target.value })
+              }
+              value={itemToEdit.category}
+            />
+          </label>
+          <label>
+            Location:
             <input
               onChange={(e) =>
                 setItemToEdit({ ...itemToEdit, location: e.target.value })
@@ -157,22 +173,22 @@ export default function ProductsPage() {
               value={itemToEdit.location}
             />
           </label>
-          <label>
-            seller:
+          {/* <label>
+            Seller:
             <input
               onChange={(e) =>
                 setItemToEdit({ ...itemToEdit, owner: e.target.value })
               }
               value={itemToEdit.owner}
             />
-          </label>
+          </label> */}
           <label>
-            price:
+            Price:
             <input
               onChange={(e) =>
                 setItemToEdit({ ...itemToEdit, price: e.target.value })
               }
-              value={itemToEdit.price}
+              value={itemToEdit.price || ""}
             />
           </label>
           <EditSection className="button-row">

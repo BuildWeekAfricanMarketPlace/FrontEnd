@@ -4,6 +4,8 @@ import {
   FETCH_USER_FAIL,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAIL,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAIL,
 } from "../actions";
 
 const initialState = {
@@ -48,6 +50,16 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingUser: false,
+        error: action.payload,
+      };
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        // singleUser: action.payload,
+      };
+    case UPDATE_USER_FAIL:
+      return {
+        ...state,
         error: action.payload,
       };
 
